@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+:root {
+  --color1: rgb(135, 127, 218);
+  --primary-color: #ff9800;
+    --background-dark: #1a1f2b;
+    --background-darker: #141824;
+    --text-color: #e0e0e0;
+    --text-muted: #9e9e9e;
+    --card-bg: #232838;
+    --border-color: #2d3446;
+    --sidebar-width: 200px;
+    --sidebar-collapsed-width: 70px;
+    --header-height: 60px;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: var(--background-darker);
+  color: white;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.detailsform {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+
+}
+
+.detailsform button{
+  width: max-content;
+  padding: 10px;
+  margin-left: 110px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+.detailsform input {
+  padding: 10px;
+}
+
+
+.myspan{
+  border-radius: 10px;
+
+  background-color: var(--background-dark);
+  padding: 10px;
+  width: max-content;
+}
+
+.myspan p{
+  padding-left: 10px;
+  margin-bottom: 0%;
+  text-align: center;
+}
+
+.chartsdiv{
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(62, 62, 62, 0.25);
+  flex: 1;
+  min-width: 30vw;
+}
+
+
+.outputs{
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.toprow{
+  display: flex;
+}
+
+.detailstopcontainer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.detailstop{
+  height: 90%;
+  flex: 1;
+  margin: 10px;
+  background-color: var(--card-bg);
+}
+
+.detailstop p{
+  text-align: center;
+  height: max-content;
+  font-size: 3em;
+}
+
+.middlerow{
+  display: flex;
+  flex-direction: row;
+}
+
+.leftmiddle{
+  width: 200px;
+  padding: 80px;
+}
+
+.circle{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 12px solid var(--primary-color);
+}
+
+.reply{
+  background-color: var(--border-color);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.lastrow h3{
+  text-align: center;
+}
