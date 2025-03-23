@@ -9,7 +9,11 @@ export default defineConfig({
     react()],
   server: {
     proxy: {
-      '/api' : 'http://127.0.0.1:9002/'
+      '/api': {
+        target: 'http://127.0.0.1:9002',
+        changeOrigin: true,
+        secure: false
+      }
     }
   }
 })

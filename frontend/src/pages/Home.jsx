@@ -13,7 +13,9 @@ function Home() {
   const [totalTransactions, setTotalTransactions] = useState(0);
   const [fraudulentTransactions, setFraudulentTransactions] = useState(0);
   const [fraudPercentage, setFraudPercentage] = useState(0);
-  const [airesp, setairesp] = useState('Get started')
+  const [airesp, setairesp] = useState('Get started');
+  const [isDragging, setIsDragging] = useState(false);
+  const [uploadError, setUploadError] = useState('');
 
   function validateCSV(file) {
     if (!file) return false;
@@ -21,7 +23,7 @@ function Home() {
     const validExtension = file.name.toLowerCase().endsWith('.csv');
 
     if (!validMimeType && !validExtension) {
-      alert(`Invalid file: ${file.name}. Please upload a CSV file.`);
+      setUploadError(`Invalid file: ${file.name}. Please upload a CSV file.`);
       return false;
     }
     return true;
@@ -91,12 +93,45 @@ function Home() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-xl font-semibold mb-4 text-center">Upload Balance Sheet</h2>
-          <div className="flex flex-col space-y-4">
+          <div 
+            className={`flex flex-col space-y-4 border-2 border-dashed ${isDragging ? 'border-blue-500 bg-blue-100/10' : 'border-gray-700'} rounded-lg p-8 transition-colors duration-200 ease-in-out`}
+            onDragOver={(e) => {
+              e.preventDefault();
+              setIsDragging(true);
+            }}
+            onDragLeave={(e) => {
+              e.preventDefault();
+              setIsDragging(false);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              setIsDragging(false);
+              setUploadError('');
+              const droppedFile = e.dataTransfer.files[0];
+              if (validateCSV(droppedFile)) {
+                setFile1(droppedFile);
+              }
+            }}
+          >
+            <div className="text-center">
+              <p className="text-lg mb-2">{file1 ? file1.name : 'Drag & drop your CSV file here'}</p>
+              <p className="text-sm text-gray-400">or</p>
+            </div>
             <input
               type="file"
-              onChange={(e) => setFile1(e.target.files[0])}
-              className="border border-gray-700 p-2 rounded-md bg-gray-700 text-white"
+              onChange={(e) => {
+                setUploadError('');
+                const selectedFile = e.target.files[0];
+                if (validateCSV(selectedFile)) {
+                  setFile1(selectedFile);
+                }
+              }}
+              accept=".csv,text/csv"
+              className="border border-gray-700 p-2 rounded-md bg-gray-700 text-white cursor-pointer"
             />
+            {uploadError && (
+              <p className="text-red-500 text-sm mt-2">{uploadError}</p>
+            )}
             <button
               onClick={handleSubmit}
               className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"

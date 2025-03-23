@@ -77,7 +77,7 @@ function CarouselStats({ totalTransactions, fraudulentTransactions, fraudPercent
 
         {/* Stats cards */}
         <div className="flex justify-center items-center w-full">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {stats.map((stat, index) => {
               // 0 = left, 1 = center, 2 = right
               const position = (index - 1) % 3;
